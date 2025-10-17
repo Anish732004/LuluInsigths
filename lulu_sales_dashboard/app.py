@@ -7,9 +7,13 @@ st.set_page_config(page_title="LuLu UAE Sales Insights Dashboard", layout="wide"
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("lulu_uae_master_2000.csv")
+    import os
+    # Dynamically locate the CSV even if path changes
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    data_path = os.path.join(base_dir, "lulu_uae_master_2000.csv")
+    df = pd.read_csv(data_path)
     return df
-
+    
 df = load_data()
 
 # Sidebar filters
